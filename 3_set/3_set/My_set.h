@@ -8,15 +8,30 @@ class My_set
 	public:
 		My_set(bool (*func)(T, T));
 		~My_set();
+		//Copy constructor
+		//My_set(My_set&);
 
 		int getSize() const;
 		void addElement(T e);
 		void removeElement(T e);
 		bool contains(T e);
-		My_set minus(My_set s);
-		My_set plus(My_set s);
+		void minus(My_set * s);
+		void plus(My_set * s);
 		void clear();
 		T operator [] (int);
+
+		class exBoundary
+		{
+			private:
+				int m_index;
+
+			public:
+				exBoundary(int i) { m_index = i; }
+				~exBoundary() {};
+				int getIndex() {return m_index; };
+		};
+
+		class exExists {};
 
 	private:
 		Node<T> *pElem;
@@ -126,13 +141,15 @@ void My_set<T>::removeElement(T e)
 template <class T>
 void My_set<T>::clear()
 {
-	Node * p = pElem;
+	Node<T> * p = pElem;
 	while (p != NULL)
 	{
-		Node * tmp = p;
+		Node<T> * tmp = p;
 		p = p->pNext;
 		delete tmp;
 	}
+
+	pElem = NULL;
 }
 
 template <class T>
@@ -152,12 +169,31 @@ int My_set<T>::getSize() const
 template <class T>
 T My_set<T>::operator [] (int index)
 {
-	if (index > this->getSize() - 1)
-		return NULL;
+	if ((index > this->getSize() - 1) ||
+		(index < 0))
+		throw exBoundary(index);
 
 	Node<T> * n = pElem;
 	for (int i = 0; i < index; i++)
 		n = n->pNext;
 
 	return n->value;
+}
+
+template <class T>
+void My_set<T>::plus(My_set * s)
+{
+	for (int i = 0; i < s->getSize(); i++)
+	{
+		this->addElement((*s)[i]);
+	}
+}
+
+template <class T>
+void My_set<T>::minus(My_set * s)
+{
+	for (int i = 0; i < s->getSize(); i++)
+	{
+		this->removeElement((*s)[i]);
+	}
 }

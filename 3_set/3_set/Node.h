@@ -18,7 +18,6 @@ class Node
 template <class T>
 Node<T>::Node()
 {
-	//value = NULL;
 	pNext = NULL;
 }
 
