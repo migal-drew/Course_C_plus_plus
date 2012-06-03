@@ -18,12 +18,13 @@ class Node
 template <class T>
 Node<T>::Node()
 {
-	value = NULL;
+	//value = NULL;
 	pNext = NULL;
 }
 
 template <class T>
 Node<T>::~Node()
 {
-	cout << "Node destructor..." << endl;
+	cout << "Node destructor with value...."
+		<< value << endl;
 }

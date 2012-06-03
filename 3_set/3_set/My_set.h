@@ -64,8 +64,6 @@ void My_set<T>::addElement(T e)
 	if (this->contains(e))
 		return;
 
-	
-
 	if (pElem == NULL)
 	{
 		pElem = new Node<T>();
@@ -79,10 +77,14 @@ void My_set<T>::addElement(T e)
 			if (p->pNext == NULL)
 			{
 				p->pNext = new Node<T>();
+				p->pNext->value = e;
 				p = p->pNext;
-				p->value = e;
 
 				return;
+			}
+			else
+			{
+				p = p->pNext;
 			}
 		}
 	}
@@ -96,20 +98,25 @@ void My_set<T>::removeElement(T e)
 		if (compareFunc(pElem->value, e))
 		{
 			Node<T> * tmp = pElem;
-			pElem = pElem-pNext;
+			pElem = pElem->pNext;
 			delete tmp;
 		}
 		else
 		{
-			Node * p = pElem;
+			Node<T> * p = pElem;
 			while (p != NULL)
 			{
-				if (compareFunc(p->value, e))
+				if (compareFunc(p->pNext->value, e))
 				{
-					Node * tmp = p;
-					p = p->pNext;
+					Node<T> * tmp = p->pNext;
+					p->pNext = tmp->pNext;
 					delete tmp;
+
 					return;
+				}
+				else
+				{
+					p = p->pNext;
 				}
 			}
 		}
