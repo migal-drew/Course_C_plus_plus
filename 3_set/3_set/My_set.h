@@ -8,17 +8,19 @@ class My_set
 	public:
 		My_set(bool (*func)(T, T));
 		~My_set();
-		//Copy constructor
-		//My_set(My_set&);
 
 		int getSize() const;
 		void addElement(T e);
 		void removeElement(T e);
 		bool contains(T e);
-		void minus(My_set * s);
-		void plus(My_set * s);
+		void add(My_set * s);
+		void subtract(My_set * s);
 		void clear();
+
 		T operator [] (int);
+		My_set* operator + (My_set *);
+		My_set* operator - (My_set *);
+		My_set* operator * (My_set *);
 
 		class exBoundary
 		{
@@ -33,9 +35,11 @@ class My_set
 
 		class exExists {};
 
+		bool (*compareFunc)(T e1, T e2);
+
 	private:
 		Node<T> *pElem;
-		bool (*compareFunc)(T e1, T e2);
+		//bool (*compareFunc)(T e1, T e2);
 };
 
 template <class T>
@@ -119,7 +123,7 @@ void My_set<T>::removeElement(T e)
 		else
 		{
 			Node<T> * p = pElem;
-			while (p != NULL)
+			while (p->pNext != NULL)
 			{
 				if (compareFunc(p->pNext->value, e))
 				{
@@ -181,7 +185,7 @@ T My_set<T>::operator [] (int index)
 }
 
 template <class T>
-void My_set<T>::plus(My_set * s)
+void My_set<T>::add(My_set * s)
 {
 	for (int i = 0; i < s->getSize(); i++)
 	{
@@ -190,10 +194,32 @@ void My_set<T>::plus(My_set * s)
 }
 
 template <class T>
-void My_set<T>::minus(My_set * s)
+void My_set<T>::subtract(My_set * s)
 {
 	for (int i = 0; i < s->getSize(); i++)
 	{
 		this->removeElement((*s)[i]);
 	}
+}
+
+template <class T>
+My_set My_set<T>::operator+(My_set * s)
+{
+	My_set<T> * ret = new My_set<T>(this->compareFunc);
+	for (int i = 0; i < this->getSize(); i++)
+	{
+		ret->addElement((*this)[i]);
+	}
+}
+
+template <class T>
+My_set My_set<T>::operator-(My_set * s)
+{
+
+}
+
+template <class T>
+My_set My_set<T>::operator*(My_set * s)
+{
+
 }

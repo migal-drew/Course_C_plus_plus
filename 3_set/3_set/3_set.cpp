@@ -26,14 +26,12 @@ void fillIntSet(My_set<int> * set_int, int start, int end)
 	{
 		set_int->addElement(i);
 	}
-	//set_int->removeElement(13);
 }
 
-void fillStringSet(My_set<string> * set_string)
+void fillStringSet(My_set<string> * set_string, int start, int end)
 {
-	//cout << "String set" << endl;
 	ostringstream oss;
-	for (int i = 0; i < 5; i++)
+	for (int i = start; i < end; i++)
 	{
 		oss.str("");
 		oss << "This is "  << i << " ";
@@ -86,10 +84,10 @@ int main(int argc, char* argv[])
 	switch (ch)
 	{
 		case 1:
-			set_int_1->plus(set_int_2);
+			set_int_1->add(set_int_2);
 			break;
 		case 2:
-			set_int_1->minus(set_int_2);
+			set_int_1->subtract(set_int_2);
 			break;
 	}
 
