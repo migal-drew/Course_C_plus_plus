@@ -8,6 +8,8 @@
 #include <string>
 #include <sstream>
 
+#define EVER ;;
+
 using namespace std;
 
 bool compare_int(int a, int b)
@@ -42,6 +44,9 @@ void fillStringSet(My_set<string> * set_string, int start, int end)
 template <class T>
 void printSet(My_set<T> * s)
 {
+	if (s == NULL)
+		return;
+
 	for (int i = 0; i < s->getSize(); i++)
 	{
 		try
@@ -61,6 +66,8 @@ void printMenu()
 	cout << "********************" << endl;
 	cout << "1. Plus" << endl;
 	cout << "2. Minus" << endl;
+	cout << "3. Intersection" << endl;
+	cout << "4. Contains" << endl;
 	cout << "********************" << endl;
 }
 
@@ -69,34 +76,49 @@ int main(int argc, char* argv[])
 	My_set<int> * set_int_1 = new My_set<int>(compare_int);
 	My_set<int> * set_int_2 = new My_set<int>(compare_int);
 
-	fillIntSet(set_int_1, 0, 8);
-	fillIntSet(set_int_2, 5, 10);
+	fillIntSet(set_int_1, 4, 7);
+	fillIntSet(set_int_2, 0, 10);
 
-	cout << "First set" << endl;
-	printSet(set_int_1);
-	cout << "Second set" << endl;
-	printSet(set_int_2);
+	My_set<int> * ans = NULL;
 
-	printMenu();
-
-	int ch = 0;
-	cin >> ch;
-	switch (ch)
+	for (EVER)
 	{
-		case 1:
-			set_int_1->add(set_int_2);
+		cout << "First set" << endl;
+		printSet(set_int_1);
+		cout << "Second set" << endl;
+		printSet(set_int_2);
+
+		printMenu();
+
+		int ch = 0;
+		bool comp;
+		bool exit = false;
+		cin >> ch;
+		switch (ch)
+		{
+			case 1:
+				ans = *set_int_1 + *set_int_2;
+				break;
+			case 2:
+				ans = *set_int_1 - *set_int_2;
+				break;
+			case 3:
+				ans = (*set_int_1) * (*set_int_2);
+				break;
+			case 4:
+				comp = (*set_int_1) < (*set_int_2);
+				cout << "Comparison test " << comp << endl;
+				break;
+			default:
+				exit = true;
+				break;
+		}
+		if (exit)
 			break;
-		case 2:
-			set_int_1->subtract(set_int_2);
-			break;
+
+		cout << "Result" << endl;
+		printSet(ans);
 	}
-
-	cout << "First set" << endl;
-	printSet(set_int_1);
-	cout << "Second set" << endl;
-	printSet(set_int_2);
-
-	cin.ignore();
 	cin.ignore();
 
 	return 0;
