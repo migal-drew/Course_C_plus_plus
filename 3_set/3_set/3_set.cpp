@@ -67,8 +67,23 @@ void printMenu()
 	cout << "1. Plus" << endl;
 	cout << "2. Minus" << endl;
 	cout << "3. Intersection" << endl;
-	cout << "4. Contains" << endl;
+	cout << "4. 1 contains 2" << endl;
+	cout << "5. 2 contains 1" << endl;
 	cout << "********************" << endl;
+}
+
+void enterSet(My_set<int> * s)
+{
+	int num = 0;
+	int elem;
+	cout << "Enter number of elements" << endl;
+	cin >> num;
+	for (int i = 0; i < num; i++)
+	{
+		cout << "Enter "  << i << " element" << endl;
+		cin >> elem;
+		s->addElement(elem);
+	}
 }
 
 int main(int argc, char* argv[])
@@ -76,8 +91,10 @@ int main(int argc, char* argv[])
 	My_set<int> * set_int_1 = new My_set<int>(compare_int);
 	My_set<int> * set_int_2 = new My_set<int>(compare_int);
 
-	fillIntSet(set_int_1, 4, 7);
-	fillIntSet(set_int_2, 0, 10);
+	cout << "Entering 1 set" << endl;
+	enterSet(set_int_1);
+	cout << "Entering 2 set" << endl;
+	enterSet(set_int_2);
 
 	My_set<int> * ans = NULL;
 
@@ -96,6 +113,7 @@ int main(int argc, char* argv[])
 		cin >> ch;
 		switch (ch)
 		{
+			delete ans;
 			case 1:
 				ans = *set_int_1 + *set_int_2;
 				break;
@@ -107,6 +125,10 @@ int main(int argc, char* argv[])
 				break;
 			case 4:
 				comp = (*set_int_1) < (*set_int_2);
+				cout << "Comparison test " << comp << endl;
+				break;
+			case 5:
+				comp = (*set_int_2) < (*set_int_1);
 				cout << "Comparison test " << comp << endl;
 				break;
 			default:

@@ -9,7 +9,7 @@ class My_set
 		My_set(bool (*func)(T, T));
 		~My_set();
 
-		//Конструктор копирования
+		//Конструктор копий
 		My_set(My_set&);
 
 		int getSize() const;
