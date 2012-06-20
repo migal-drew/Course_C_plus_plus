@@ -91,9 +91,9 @@ int main(int argc, char* argv[])
 	My_set<int> * set_int_1 = new My_set<int>(compare_int);
 	My_set<int> * set_int_2 = new My_set<int>(compare_int);
 
-	cout << "Entering 1 set" << endl;
+	cout << "Enter 1st set" << endl;
 	enterSet(set_int_1);
-	cout << "Entering 2 set" << endl;
+	cout << "Enter 2nd set" << endl;
 	enterSet(set_int_2);
 
 	My_set<int> * ans = NULL;
@@ -111,9 +111,10 @@ int main(int argc, char* argv[])
 		bool comp;
 		bool exit = false;
 		cin >> ch;
+		
 		switch (ch)
 		{
-			delete ans;
+			
 			case 1:
 				ans = *set_int_1 + *set_int_2;
 				break;
@@ -140,7 +141,10 @@ int main(int argc, char* argv[])
 
 		cout << "Result" << endl;
 		printSet(ans);
+
+		delete ans;
 	}
+
 	cin.ignore();
 
 	return 0;
