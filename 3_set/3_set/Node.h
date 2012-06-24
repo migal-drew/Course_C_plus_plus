@@ -24,6 +24,8 @@ Node<T>::Node()
 template <class T>
 Node<T>::~Node()
 {
+	/*
 	cout << "Node destructor with value...."
 		<< value << endl;
+	*/
 }

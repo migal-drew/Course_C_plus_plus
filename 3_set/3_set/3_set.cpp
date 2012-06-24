@@ -42,16 +42,16 @@ void fillStringSet(My_set<string> * set_string, int start, int end)
 }
 
 template <class T>
-void printSet(My_set<T> * s)
+void printSet(My_set<T>& s)
 {
-	if (s == NULL)
-		return;
+	//if (s == NULL)
+		//return;
 
-	for (int i = 0; i < s->getSize(); i++)
+	for (int i = 0; i < s.getSize(); i++)
 	{
 		try
 		{
-			cout << (*s)[i] << " ; ";
+			cout << s[i] << " ; ";
 		}
 		catch(...)
 		{
@@ -96,14 +96,14 @@ int main(int argc, char* argv[])
 	cout << "Enter 2nd set" << endl;
 	enterSet(set_int_2);
 
-	My_set<int> * ans = NULL;
+	My_set<int> ans = NULL;
 
 	for (EVER)
 	{
 		cout << "First set" << endl;
-		printSet(set_int_1);
+		printSet(*set_int_1);
 		cout << "Second set" << endl;
-		printSet(set_int_2);
+		printSet(*set_int_2);
 
 		printMenu();
 
@@ -114,22 +114,21 @@ int main(int argc, char* argv[])
 		
 		switch (ch)
 		{
-			
 			case 1:
-				ans = *set_int_1 + *set_int_2;
+				ans = (*set_int_1) + set_int_2;
 				break;
 			case 2:
-				ans = *set_int_1 - *set_int_2;
+				ans = (*set_int_1) - set_int_2;
 				break;
 			case 3:
-				ans = (*set_int_1) * (*set_int_2);
+				ans = (*set_int_1) * set_int_2;
 				break;
 			case 4:
-				comp = (*set_int_1) < (*set_int_2);
+				comp = (*set_int_1) < (set_int_2);
 				cout << "Comparison test " << comp << endl;
 				break;
 			case 5:
-				comp = (*set_int_2) < (*set_int_1);
+				comp = (*set_int_2) < (set_int_1);
 				cout << "Comparison test " << comp << endl;
 				break;
 			default:
@@ -142,7 +141,7 @@ int main(int argc, char* argv[])
 		cout << "Result" << endl;
 		printSet(ans);
 
-		delete ans;
+		//delete ans;
 	}
 
 	cin.ignore();

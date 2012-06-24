@@ -21,10 +21,10 @@ class My_set
 		void clear();
 
 		T operator [] (int);
-		My_set* operator + (My_set);
-		My_set* operator - (My_set);
-		My_set* operator * (My_set);
-		bool operator < (My_set);
+		My_set& operator + (My_set*);
+		My_set& operator - (My_set*);
+		My_set& operator * (My_set*);
+		bool operator < (My_set*);
 
 		class exBoundary
 		{
@@ -43,7 +43,6 @@ class My_set
 
 	private:
 		Node<T> *pElem;
-		//bool (*compareFunc)(T e1, T e2);
 };
 
 template <class T>
@@ -211,43 +210,43 @@ My_set<T>::My_set(My_set& s)
 }
 
 template <class T>
-My_set<T>* My_set<T>::operator-(My_set s)
+My_set<T>& My_set<T>::operator-(My_set* s)
 {
-	My_set<T> * ret = new My_set<T>(*this);
+	My_set<T> &ret = My_set<T>(*this);
 	for (int i = 0; i < s.getSize(); i++)
 	{
-		ret->removeElement(s[i]);
+		ret.removeElement(s[i]);
 	}
 
 	return ret;
 }
 
 template <class T>
-My_set<T>* My_set<T>::operator*(My_set s)
+My_set<T>& My_set<T>::operator*(My_set& s)
 {
-	My_set<T> * ret = new My_set<T>(this->compareFunc);
+	My_set<T> ret(this->compareFunc);
 	for (int i = 0; i < this->getSize(); i++)
 		for (int j = 0; j < s.getSize(); j++)
-			if (this->compareFunc((*this)[i], s[j]))
-				ret->addElement((*this)[i]);
+			if (this->compareFunc((*this)[i], (*s)[j]))
+				ret.addElement((*this)[i]);
 
 	return ret;
 }
 
 template <class T>
-My_set<T>* My_set<T>::operator+(My_set s)
+My_set<T>& My_set<T>::operator+(My_set* s)
 {
-	My_set<T> * ret = new My_set<T>(*this);
+	My_set<T> ret(*this);
 	for (int i = 0; i < s.getSize(); i++)
 	{
-		ret->addElement(s[i]);
+		ret.addElement((*s)[i]);
 	}
 
 	return ret;
 }
 
 template <class T>
-bool My_set<T>::operator<(My_set s)
+bool My_set<T>::operator<(My_set* s)
 {
 	bool validSize = this->getSize() <= s.getSize();
 	bool containAll = true;

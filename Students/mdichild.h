@@ -9,6 +9,7 @@
 class MdiChild : public QTextEdit
 {
     Q_OBJECT
+
 public:
     MdiChild();
     void setTextInEdit(QString str);
@@ -33,5 +34,3 @@ private:
     QString curFile;
     bool isUntitled;
 };
-
-#endif // MDICHILD_H

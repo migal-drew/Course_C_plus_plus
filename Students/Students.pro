@@ -12,9 +12,16 @@ TEMPLATE = app
 
 SOURCES += main.cpp\
         mainwindow.cpp \
-    mdichild.cpp
+    mdichild.cpp \
+    student.cpp \
+    subjects.cpp \
+    dialog.cpp
 
 HEADERS  += mainwindow.h \
-    mdichild.h
+    mdichild.h \
+    student.h \
+    subjects.h \
+    dialog.h
 
-FORMS    += mainwindow.ui
+FORMS    += mainwindow.ui \
+    dialog.ui
