@@ -17,6 +17,8 @@ public:
     void clear();
     QString getSubj(int id);
     int getID(QString subj);
+    QString operator[] (int id);
+    int size();
 
 private:
     QMap<int, QString>* _dictionary;

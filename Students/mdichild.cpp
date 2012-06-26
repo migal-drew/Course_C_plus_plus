@@ -8,7 +8,6 @@ MdiChild::MdiChild()
 {
     setAttribute(Qt::WA_DeleteOnClose);
     isUntitled = true;
-
 }
 
 void MdiChild::setTextInEdit(QString str) {
@@ -68,11 +67,7 @@ void MdiChild::setCurrentFile(const QString &fileName) {
 }
 
 QString MdiChild::userFriendlyCurrentFile() {
-    return strippedName(curFile);
-}
-
-QString MdiChild::strippedName(const QString &fullFileName) {
-    return QFileInfo(fullFileName).fileName();
+    return QFileInfo(curFile).fileName();
 }
 
 QString MdiChild::getFilePath() {

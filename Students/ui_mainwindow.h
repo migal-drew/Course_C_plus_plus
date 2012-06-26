@@ -1,7 +1,7 @@
 /********************************************************************************
 ** Form generated from reading UI file 'mainwindow.ui'
 **
-** Created: Sun 24. Jun 23:47:22 2012
+** Created: Tue 26. Jun 04:05:50 2012
 **      by: Qt User Interface Compiler version 4.7.4
 **
 ** WARNING! All changes made in this file will be lost when recompiling UI file!
@@ -40,11 +40,13 @@ public:
     QAction *actionCopy;
     QAction *actionPaste;
     QAction *actionCut;
+    QAction *actionSearch;
     QWidget *centralWidget;
     QMdiArea *mdiArea;
     QMenuBar *menuBar;
     QMenu *menuFile;
     QMenu *menuEdit;
+    QMenu *menuActions;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
 
@@ -77,6 +79,8 @@ public:
         actionPaste->setObjectName(QString::fromUtf8("actionPaste"));
         actionCut = new QAction(MainWindow);
         actionCut->setObjectName(QString::fromUtf8("actionCut"));
+        actionSearch = new QAction(MainWindow);
+        actionSearch->setObjectName(QString::fromUtf8("actionSearch"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QString::fromUtf8("centralWidget"));
         mdiArea = new QMdiArea(centralWidget);
@@ -93,6 +97,8 @@ public:
         menuFile->setObjectName(QString::fromUtf8("menuFile"));
         menuEdit = new QMenu(menuBar);
         menuEdit->setObjectName(QString::fromUtf8("menuEdit"));
+        menuActions = new QMenu(menuBar);
+        menuActions->setObjectName(QString::fromUtf8("menuActions"));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QString::fromUtf8("mainToolBar"));
@@ -103,6 +109,7 @@ public:
 
         menuBar->addAction(menuFile->menuAction());
         menuBar->addAction(menuEdit->menuAction());
+        menuBar->addAction(menuActions->menuAction());
         menuFile->addAction(actionNew);
         menuFile->addAction(actionOpen);
         menuFile->addSeparator();
@@ -119,6 +126,9 @@ public:
         menuEdit->addAction(actionCopy);
         menuEdit->addAction(actionPaste);
         menuEdit->addAction(actionCut);
+        menuActions->addAction(actionSearch);
+        mainToolBar->addAction(actionUndo);
+        mainToolBar->addAction(actionPaste);
 
         retranslateUi(MainWindow);
 
@@ -137,7 +147,7 @@ public:
         actionExit->setText(QApplication::translate("MainWindow", "Exit", 0, QApplication::UnicodeUTF8));
         actionExit->setShortcut(QApplication::translate("MainWindow", "Ctrl+Q", 0, QApplication::UnicodeUTF8));
         actionClose->setText(QApplication::translate("MainWindow", "Close", 0, QApplication::UnicodeUTF8));
-        actionClose->setShortcut(QApplication::translate("MainWindow", "Ctrl+W", 0, QApplication::UnicodeUTF8));
+        actionClose->setShortcut(QApplication::translate("MainWindow", "Ctrl+E", 0, QApplication::UnicodeUTF8));
         actionClose_All->setText(QApplication::translate("MainWindow", "Close All", 0, QApplication::UnicodeUTF8));
         actionClose_All->setShortcut(QApplication::translate("MainWindow", "Ctrl+Shift+W", 0, QApplication::UnicodeUTF8));
         actionNew->setText(QApplication::translate("MainWindow", "New", 0, QApplication::UnicodeUTF8));
@@ -147,8 +157,11 @@ public:
         actionCopy->setText(QApplication::translate("MainWindow", "Copy", 0, QApplication::UnicodeUTF8));
         actionPaste->setText(QApplication::translate("MainWindow", "Paste", 0, QApplication::UnicodeUTF8));
         actionCut->setText(QApplication::translate("MainWindow", "Cut", 0, QApplication::UnicodeUTF8));
+        actionSearch->setText(QApplication::translate("MainWindow", "Search", 0, QApplication::UnicodeUTF8));
+        actionSearch->setShortcut(QApplication::translate("MainWindow", "Ctrl+F", 0, QApplication::UnicodeUTF8));
         menuFile->setTitle(QApplication::translate("MainWindow", "File", 0, QApplication::UnicodeUTF8));
         menuEdit->setTitle(QApplication::translate("MainWindow", "Edit", 0, QApplication::UnicodeUTF8));
+        menuActions->setTitle(QApplication::translate("MainWindow", "Actions", 0, QApplication::UnicodeUTF8));
     } // retranslateUi
 
 };

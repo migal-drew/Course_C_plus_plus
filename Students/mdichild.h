@@ -19,11 +19,8 @@ public:
     bool save();
     bool saveFile(const QString &nameFile);
     QString getFilePath();
-
-private:
     void setCurrentFile(const QString &fileName);
     QString userFriendlyCurrentFile();
-    QString strippedName(const QString &fullFileName);
 
 signals:
 
