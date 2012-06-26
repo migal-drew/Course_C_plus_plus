@@ -115,20 +115,20 @@ int main(int argc, char* argv[])
 		switch (ch)
 		{
 			case 1:
-				ans = (*set_int_1) + set_int_2;
+				ans = ((*set_int_1) + (*set_int_2));
 				break;
 			case 2:
-				ans = (*set_int_1) - set_int_2;
+				ans = (*set_int_1) - (*set_int_2);
 				break;
 			case 3:
-				ans = (*set_int_1) * set_int_2;
+				ans = (*set_int_1) * (*set_int_2);
 				break;
 			case 4:
-				comp = (*set_int_1) < (set_int_2);
+				comp = (*set_int_1) < (*set_int_2);
 				cout << "Comparison test " << comp << endl;
 				break;
 			case 5:
-				comp = (*set_int_2) < (set_int_1);
+				comp = (*set_int_2) < (*set_int_1);
 				cout << "Comparison test " << comp << endl;
 				break;
 			default:
